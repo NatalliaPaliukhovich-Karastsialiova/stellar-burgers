@@ -21,8 +21,11 @@ export const fetchIngredients = createAsyncThunk(
     try {
       const response = await getIngredientsApi();
       return response;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка загрузки ингредиентов');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка загрузки ингредиентов');
     }
   }
 );

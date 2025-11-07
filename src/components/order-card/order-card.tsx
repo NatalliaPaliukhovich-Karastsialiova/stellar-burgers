@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { OrderCardProps } from './type';
@@ -7,8 +7,6 @@ import { OrderCardUI } from '../ui/order-card';
 
 import { useAppSelector } from '../../services/store';
 import { selectIngredients } from '../../features/ingredients/selectors';
-import { fetchIngredients } from '../../features/ingredients/ingredientsSlice';
-import { useAppDispatch } from '../../services/store';
 import { Preloader } from '@ui';
 
 const maxIngredients = 6;

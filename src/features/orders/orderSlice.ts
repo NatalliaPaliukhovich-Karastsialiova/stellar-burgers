@@ -22,8 +22,11 @@ export const fetchOrdersThunk = createAsyncThunk(
     try {
       const data = await getOrdersApi();
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка при загрузке заказов');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка при загрузке заказов');
     }
   }
 );
@@ -34,8 +37,11 @@ export const fetchOrderByNumberThunk = createAsyncThunk(
     try {
       const data = await getOrderByNumberApi(number);
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка при загрузке заказа');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка при загрузке заказа');
     }
   }
 );

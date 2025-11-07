@@ -3,12 +3,11 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { selectedFeed } from '../../features/feed/selectors';
-import { useAppSelector } from '../../services/store';
 import { selectIngredients } from '../../features/ingredients/selectors';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchFeedThunk } from '../../features/feed/feedSlice';
-import { useAppDispatch } from '../../services/store';
+import { useAppDispatch, useAppSelector } from '../../services/store';
 
 export const OrderInfo: FC = () => {
   const dispatch = useAppDispatch();

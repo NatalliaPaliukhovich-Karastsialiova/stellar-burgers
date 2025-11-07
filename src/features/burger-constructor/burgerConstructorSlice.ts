@@ -35,8 +35,11 @@ export const createOrderThunk = createAsyncThunk(
         ingredientsIds.push(ingredientItems.bun?._id);
       const response = await orderBurgerApi(ingredientsIds);
       return response.order;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка создания заказа');
     }
   }
 );
@@ -45,10 +48,6 @@ const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   reducers: {
-    clearOrder: (state) => {
-      state.orderRequest = false;
-      state.orderModalData = null;
-    },
     clearConstructor: (state) => {
       state.constructorItems = { bun: null, ingredients: [] };
     },
@@ -81,6 +80,10 @@ const burgerConstructorSlice = createSlice({
         state.constructorItems.ingredients.filter(
           (item) => item.id !== action.payload
         );
+    },
+    clearOrderModal: (state) => {
+      state.orderRequest = false;
+      state.orderModalData = null;
     }
   },
   extraReducers: (builder) => {
@@ -92,6 +95,7 @@ const burgerConstructorSlice = createSlice({
       .addCase(createOrderThunk.fulfilled, (state, { payload }) => {
         state.orderRequest = false;
         state.orderModalData = payload;
+        state.constructorItems = { bun: null, ingredients: [] };
       })
       .addCase(createOrderThunk.rejected, (state, { payload }) => {
         state.orderRequest = false;
@@ -101,12 +105,13 @@ const burgerConstructorSlice = createSlice({
 });
 
 export const {
-  clearOrder,
   clearConstructor,
   addIngredient,
   setBun,
   moveIngredientDown,
   moveIngredientUp,
-  removeIngredient
+  removeIngredient,
+  clearOrderModal
 } = burgerConstructorSlice.actions;
+
 export default burgerConstructorSlice.reducer;

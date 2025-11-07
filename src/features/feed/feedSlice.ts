@@ -30,8 +30,11 @@ export const fetchFeedsThunk = createAsyncThunk(
     try {
       const data = await getFeedsApi();
       return data;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка при загрузке заказов');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка при загрузке заказов');
     }
   }
 );
@@ -43,8 +46,11 @@ export const fetchFeedThunk = createAsyncThunk(
       const data = await getOrderByNumberApi(id);
       if (data.orders.length > 0) return data.orders[0];
       return null;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка при получении заказа');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка при получении заказа');
     }
   }
 );

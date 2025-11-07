@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import {
   loginUserApi,
   registerUserApi,
-  forgotPasswordApi,
-  resetPasswordApi,
   updateUserApi,
   TLoginData,
   TRegisterData,
@@ -30,8 +28,11 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await loginUserApi(data);
       return response;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка входа');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка входа');
     }
   }
 );
@@ -42,8 +43,11 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await registerUserApi(data);
       return response;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка регистрации');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка регистрации');
     }
   }
 );
@@ -54,8 +58,11 @@ export const updateUser = createAsyncThunk(
     try {
       const response = await updateUserApi(data);
       return response;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка обновления');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка обновления');
     }
   }
 );
@@ -66,8 +73,11 @@ export const logout = createAsyncThunk(
     try {
       const response = await logoutApi();
       return response;
-    } catch (err: any) {
-      return rejectWithValue(err.message || 'Ошибка выхода');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue('Ошибка выхода');
     }
   }
 );

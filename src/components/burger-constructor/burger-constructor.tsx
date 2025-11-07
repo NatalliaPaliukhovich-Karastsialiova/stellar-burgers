@@ -8,8 +8,7 @@ import {
 } from '../../features/burger-constructor/selectors';
 import {
   createOrderThunk,
-  clearOrder,
-  clearConstructor
+  clearOrderModal
 } from '../../features/burger-constructor/burgerConstructorSlice';
 import { useAppSelector, useAppDispatch } from '../../services/store';
 import { useNavigate } from 'react-router-dom';
@@ -33,8 +32,7 @@ export const BurgerConstructor: FC = () => {
       dispatch(createOrderThunk(constructorItems));
   };
   const closeOrderModal = () => {
-    dispatch(clearOrder());
-    dispatch(clearConstructor());
+    dispatch(clearOrderModal());
   };
 
   const price = useMemo(
