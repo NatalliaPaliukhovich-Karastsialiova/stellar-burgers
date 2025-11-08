@@ -33,10 +33,6 @@ import { ProtectedRoute } from '../protected-route';
 
 const App = () => {
   const navigate = useNavigate();
-
-  const handleClose = () => {
-    navigate(-1);
-  };
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -47,6 +43,10 @@ const App = () => {
   const orderNumber = profileMatch || feedMatch;
   const location = useLocation();
   const background = location.state && location.state.background;
+
+  const handleClose = () => {
+    navigate(background || -1);
+  };
 
   return (
     <div className={styles.app}>
