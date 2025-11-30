@@ -2,16 +2,10 @@ import reducer, {
   loginUser,
   registerUser,
   updateUser,
-  logout
+  logout,
+  initialState
 } from './userSlice';
 import { TUser } from '@utils-types';
-
-const initialState = {
-  user: null,
-  isLoading: false,
-  error: undefined,
-  isAuth: false
-};
 
 const mockUser: TUser = {
   email: 'test@test.com',

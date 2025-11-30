@@ -1,14 +1,8 @@
 import reducer, {
   fetchOrdersThunk,
-  fetchOrderByNumberThunk
+  fetchOrderByNumberThunk,
+  initialState
 } from './orderSlice';
-
-const initialState = {
-  isLoading: false,
-  orders: [],
-  selectedOrder: null,
-  error: null
-};
 
 const mockOrders = [{ _id: '1', number: 1 }];
 const mockOrderResponse = { orders: [{ _id: '1', number: 1 }] };

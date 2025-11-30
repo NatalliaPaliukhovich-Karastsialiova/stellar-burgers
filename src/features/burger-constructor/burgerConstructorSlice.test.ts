@@ -6,7 +6,8 @@ import reducer, {
   setBun,
   clearConstructor,
   clearOrderModal,
-  createOrderThunk
+  createOrderThunk,
+  initialState
 } from './burgerConstructorSlice';
 import { TConstructorIngredient } from '@utils-types';
 
@@ -29,13 +30,6 @@ const mockBun: TConstructorIngredient = {
   ...mockIngredient,
   type: 'bun',
   name: 'Test Bun'
-};
-
-const initialState = {
-  constructorItems: { bun: null, ingredients: [] },
-  orderRequest: false,
-  orderModalData: null,
-  error: null
 };
 
 describe('burgerConstructorSlice', () => {

@@ -1,15 +1,4 @@
-import reducer, { fetchFeedsThunk, fetchFeedThunk } from './feedSlice';
-
-const initialState = {
-  isLoading: false,
-  feed: {
-    orders: [],
-    total: 0,
-    totalToday: 0
-  },
-  selectedFeed: null,
-  error: null
-};
+import reducer, { fetchFeedsThunk, fetchFeedThunk, initialState } from './feedSlice';
 
 const mockFeedData = {
   orders: [{ _id: '1', number: 1 }],

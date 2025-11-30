@@ -15,7 +15,7 @@ interface IUserState {
   error: string | undefined;
   isAuth: boolean;
 }
-const initialState: IUserState = {
+export const initialState: IUserState = {
   user: null,
   isLoading: false,
   error: undefined,

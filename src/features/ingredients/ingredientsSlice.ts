@@ -8,7 +8,7 @@ interface IngredientsState {
   error: string | null;
   selectedIngredient: TIngredient | null;
 }
-const initialState: IngredientsState = {
+export const initialState: IngredientsState = {
   ingredients: [],
   isLoading: false,
   error: null,
