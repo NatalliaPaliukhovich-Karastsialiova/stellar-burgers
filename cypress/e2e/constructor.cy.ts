@@ -51,6 +51,9 @@ describe('Order Creation', () => {
     cy.get('button[type="submit"]').click();
     cy.wait('@login');
 
+    cy.window().its('localStorage.refreshToken').should('eq', 'test-refresh-token');
+    cy.getCookie('accessToken').should('have.property', 'value', 'test-access-token');
+
     cy.url().should('include', '/');
     cy.wait('@getIngredients');
   });

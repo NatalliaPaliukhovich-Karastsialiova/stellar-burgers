@@ -6,17 +6,17 @@ import userReducer from '../features/user/userSlice';
 import orderReducer from '../features/orders/orderSlice';
 
 describe('rootReducer', () => {
-  it('should initialize each slice with its initial state', () => {
-    const state = rootReducer(undefined, { type: '@@INIT' });
+  it('should return initial state when called with undefined state and unknown action', () => {
+    const state = rootReducer(undefined, { type: 'UNKNOWN_ACTION' });
 
-    expect(state.user).toEqual(userReducer(undefined, { type: '@@INIT' }));
-    expect(state.feed).toEqual(feedReducer(undefined, { type: '@@INIT' }));
+    expect(state.user).toEqual(userReducer(undefined, { type: 'UNKNOWN_ACTION' }));
+    expect(state.feed).toEqual(feedReducer(undefined, { type: 'UNKNOWN_ACTION' }));
     expect(state.ingredients).toEqual(
-      ingredientsReducer(undefined, { type: '@@INIT' })
+      ingredientsReducer(undefined, { type: 'UNKNOWN_ACTION' })
     );
     expect(state.burgerConstructor).toEqual(
-      burgerConstructorReducer(undefined, { type: '@@INIT' })
+      burgerConstructorReducer(undefined, { type: 'UNKNOWN_ACTION' })
     );
-    expect(state.order).toEqual(orderReducer(undefined, { type: '@@INIT' }));
+    expect(state.order).toEqual(orderReducer(undefined, { type: 'UNKNOWN_ACTION' }));
   });
 });
