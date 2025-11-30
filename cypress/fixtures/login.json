@@ -1,0 +1,10 @@
+{
+  "success": true,
+  "refreshToken": "test-refresh-token",
+  "accessToken": "test-access-token",
+  "user": {
+    "email": "test@test.com",
+    "name": "Test User"
+  }
+}
+
